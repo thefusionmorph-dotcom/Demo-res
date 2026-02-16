@@ -31,6 +31,8 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #3a3a3a;
         }
+        /* Ensure fallback content is readable on very small screens */
+        .fallback-hero { padding: 48px 24px; text-align: center; }
     </style>
 <script type="importmap">
 {
@@ -44,11 +46,23 @@
 </script>
 </head>
 <body>
-    <div id="root"></div>
+    <!-- Fallback static content so the page is not completely blank when JS fails to load -->
+    <div id="root">
+      <div class="fallback-hero">
+        <h1 class="font-serif text-5xl text-white mb-4">Lumina Gastronomy</h1>
+        <p class="text-white/70 text-lg mb-6">Fine dining redefined—welcome. If you see this message the app bundle failed to load; try running the dev server or check Console for errors.</p>
+        <p class="text-white/60">Quick troubleshooting steps:
+          <ul style="list-style:none;padding-left:0;margin-top:8px;">
+            <li>- Run your dev server (npm run dev / npm start)</li>
+            <li>- Open DevTools Console for errors</li>
+            <li>- If using static hosting, build the app (npm run build) and serve the generated bundle</li>
+          </ul>
+        </p>
+        <a href="#" class="inline-block mt-6 bg-amber-600 text-black px-6 py-3 rounded-full font-semibold">View Repo</a>
+      </div>
+    </div>
 
-    <!-- Mount the application. In development with a bundler (Vite, webpack) this will be replaced
-         by the built bundle. If you open index.html directly in a browser, you need a dev server
-         that can transpile/serve the TypeScript/JSX entry (index.tsx). -->
+    <!-- Attempt to mount the React app. Note: this only works if you are using a dev server/bundler that serves /index.tsx as a module or if you have a built bundle. -->
     <script type="module" src="/index.tsx"></script>
 </body>
 </html>
